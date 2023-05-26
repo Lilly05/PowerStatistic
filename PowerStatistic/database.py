@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import os
 
 # Linux: export CONNECTION_STRING=""
 # printenv CONNECTION_STRING
@@ -8,10 +9,15 @@ from pymongo import MongoClient
 
 class Database:
     def __init__(self):
-        return    
+        self.connectToDatabase()
+        self.db = self.getDatabase()
+        self.collection = self.getCollection(self.db)
     
-    def getDatabase():
-        db = MongoClient['Aufgabe4']
+    def connectToDatabase():
+        client = MongoClient(os.environ.get("CONNECTION_STRING"))
 
-    def getCollection();
-        collection = db['PowerStatistics']
+    def getDatabase():
+        return MongoClient['Aufgabe4']
+
+    def getCollection(db):
+        return db['PowerStatistics']
