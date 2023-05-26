@@ -6,6 +6,7 @@ from pymongo import MongoClient
 # Windows: set CONNECTION_STRING="" | $CONNECTION_STRING=""
 # echo CONNECTION_STRING
 
+#hallo
 class Database:
     def __init__(self):
         return    
