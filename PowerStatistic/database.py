@@ -15,4 +15,3 @@ class Database:
 
     def getCollection();
         collection = db['PowerStatistics']
-sf
