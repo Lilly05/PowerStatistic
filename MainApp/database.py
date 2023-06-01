@@ -5,7 +5,7 @@ import os
 class Database:
     @staticmethod
     def db_connection():
-        client = MongoClient("mongodb://localhost:27017/")
+        client = MongoClient("mongodb://localhost:27017/")  #os.environ.get("DB_CONNECTION")
         db = client['Aufgabe4']
         collection = db['PowerStatistics']
         return collection
