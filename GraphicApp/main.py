@@ -2,9 +2,7 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from MainApp.database import Database
-from pymongo import MongoClient
 import matplotlib.pyplot as plt
-import os
 
 
 def plot_power_statistics():
