@@ -1,11 +1,14 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from MainApp.database import Database
 from pymongo import MongoClient
 import matplotlib.pyplot as plt
 import os
 
+
 def plot_power_statistics():
-    client = MongoClient("mongodb://localhost:27017/")     #os.environ.get("DB_CONNECTION") TODO: Import the DB Connection function from MainApp/database.py
-    db = client['Aufgabe4']
-    collection = db['PowerStatistics']
+    collection = Database.db_connection()
     logs = collection.find().sort('timestamp', 1)
 
     timestamps = []
