@@ -2,23 +2,30 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from MainApp.database import Database
+from MainApp.power import Power
 import matplotlib.pyplot as plt
 
 
 def plot_power_statistics():
-    collection = Database.db_connection()
-    logs = collection.find().sort('timestamp', 1)
+    db = Database()
+    collection = db.collection
+
+    powers = []
+
+    for power_data in collection.find():
+        power = Power(**power_data)
+        powers.append(power)
 
     timestamps = []
     ram_totals = []
     ram_useds = []
     cpu_percentages = []
 
-    for log in logs:
-        timestamps.append(log['timestamp'])
-        ram_totals.append(log['ram_total'])
-        ram_useds.append(log['ram_used'])
-        cpu_percentages.append(log['cpu_percent'])
+    for power in powers:
+        timestamps.append(power.timestamp)
+        ram_totals.append(power.ram_total)
+        ram_useds.append(power.ram_used)
+        cpu_percentages.append(power.cpu_percent)
 
     fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
 
