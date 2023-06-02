@@ -11,30 +11,24 @@ def plot_power_statistics():
     collection = db.collection
 
     powers = []
-
     for power_data in collection.find():
-        power = Power(**power_data)
-        powers.append(power)
+        powers.append(Power(**power_data))
 
-    timestamps = []
-    ram_totals = []
-    ram_useds = []
-    cpu_percentages = []
-
-    for power in powers:
-        timestamps.append(power.timestamp)
-        ram_totals.append(power.ram_total)
-        ram_useds.append(power.ram_used)
-        cpu_percentages.append(power.cpu_percent)
+    timestamps = [power.timestamp for power in powers]
+    ram_totals = [power.ram_total for power in powers]
+    ram_useds = [power.ram_used for power in powers]
+    cpu_percentages = [power.cpu_percent for power in powers]
 
     fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
 
     ax1.plot(timestamps, ram_totals, label='RAM Total')
     ax1.plot(timestamps, ram_useds, label='RAM Used')
+
+    ax2.plot(timestamps, cpu_percentages, label='CPU Percent', color='red')
+
     ax1.set_ylabel('RAM Usage')
     ax1.legend()
 
-    ax2.plot(timestamps, cpu_percentages, label='CPU Percent', color='red')
     ax2.set_xlabel('Timestamp')
     ax2.set_ylabel('CPU Usage')
     ax2.legend()
