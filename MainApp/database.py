@@ -23,10 +23,10 @@ class Database:
                 self.collection.delete_one({'_id': log['_id']})
 
     
-    def save_to_database(self, cpu_percent, ram_total, ram_used, timestamp):
+    def save_to_database(self, power):
         self.collection.insert_one({
-            'cpu_percent': cpu_percent,
-            'ram_total': ram_total,
-            'ram_used': ram_used,
-            'timestamp': timestamp
+            'cpu_percent': power.cpu_percent,
+            'ram_total': power.ram_total,
+            'ram_used': power.ram_used,
+            'timestamp': power.timestamp
         })
