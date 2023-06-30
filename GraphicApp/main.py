@@ -35,7 +35,7 @@ def plot_power_statistics():
     ax1.set_ylabel('RAM Usage') # set y label for subplot 1
     ax1.legend() # show legend for subplot 1
 
-    ax2.set_xlabel('Timestamp ' + date_strings[0]) # set x label for subplot 2
+    ax2.set_xlabel('Datum und Zeit: ' + date_strings[0]) # set x label for subplot 2
     ax2.set_ylabel('CPU Usage') # set y label for subplot 2
     ax2.legend() # show legend for subplot 2
 
