@@ -23,10 +23,10 @@ class Database:
                 self.collection.delete_one({'_id': log['_id']}) # delete oldest logs
 
     
-    def save_to_database(self, power):
-        self.collection.insert_one({
-            'cpu_percent': power.cpu_percent,
-            'ram_total': power.ram_total,
-            'ram_used': power.ram_used,
-            'timestamp': power.timestamp
+    def save_to_database(self, power): # save power to database
+        self.collection.insert_one({ # insert power to database
+            'cpu_percent': power.cpu_percent, # get cpu percent
+            'ram_total': power.ram_total, # get ram total
+            'ram_used': power.ram_used, # get ram used
+            'timestamp': power.timestamp # get timestamp
         })
